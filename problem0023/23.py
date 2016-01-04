@@ -12,26 +12,56 @@ Find the sum of all the positive integers which cannot be written as the sum of 
 
 
 '''
-def get_all_divisors(num):
-	return []
 
+import sys
+import os
+sys.path.append(os.path.dirname(sys.argv[0]) + "\\..\\common\\")
+import number
+N = number.number()
 
-PERFECT_NUMBER=0
-DEFICIENT_NUMBER=1
-ABUNDANT_NUMBER=2
-
-def number_type(num):
-	t=PERFECT_NUMBER
-	return t
 
 	
+UNKNOWN_NUMBER=0
+PERFECT_NUMBER=1
+DEFICIENT_NUMBER=2
+ABUNDANT_NUMBER=3
 
+
+g_number_type={}
+
+def number_type(num):
+	global g_number_type
+	if g_number_type.get(num) != None:
+		return g_number_type[num]
+	t=UNKNOWN_NUMBER
+	divisors = N.get_divisors(num)
+	sum = 0
+	for d in divisors:
+		sum = sum + d
+	if sum < num:
+		t = PERFECT_NUMBER
+	if sum == num:
+		t = DEFICIENT_NUMBER
+	if sum > num:
+		t = ABUNDANT_NUMBER
+	g_number_type[num] = t
+	return t
+
+def is_sum_two_abundant_number(num):	
+	for i in range(1, int(num/2) + 1):
+		if number_type(i) == ABUNDANT_NUMBER and number_type(num - i) == ABUNDANT_NUMBER:
+			#print("%d is ok [ %d %d ]" % (num, i, num - i))
+			return True
+	print("%d is ok" % (num))
+	return False
 	
 MAX_SUM_ABUNDANT = 28123
 MIN_SUM_ABUNDANT = 1
 def get_result():
 	sum=0
 	for i in range(MIN_SUM_ABUNDANT,MAX_SUM_ABUNDANT):
-		if number_type(i)
+		if is_sum_two_abundant_number(i) == False:
+			sum = sum + i
+	return sum
 if __name__ == "__main__":
-	print ("result is : " + get_result())
+	print ("result is : %d" % get_result())
