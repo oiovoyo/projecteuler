@@ -52,7 +52,7 @@ def is_sum_two_abundant_number(num):
 		if number_type(i) == ABUNDANT_NUMBER and number_type(num - i) == ABUNDANT_NUMBER:
 			#print("%d is ok [ %d %d ]" % (num, i, num - i))
 			return True
-	print("%d is ok" % (num))
+	#print("%d is ok" % (num))
 	return False
 	
 MAX_SUM_ABUNDANT = 28123

@@ -11,4 +11,7 @@ class number:
 			if num % i == 0:
 				divisors.append(i)
 		return divisors
-	
+	def factorial(self, n):
+		if n <= 1:
+			return 1
+		return n * self.factorial(n - 1)
