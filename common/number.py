@@ -1,6 +1,7 @@
 '''
 common class for number
 '''
+import math
 def array_find(arr, item):
 	for i in arr:
 		if i == item:
@@ -61,3 +62,5 @@ class number:
 		recurring_number_divide_by_1(7) == 142857
 		'''
 		return self.recurring_number(num)
+	def power(self, n, a):
+		return math.pow(n,a)
