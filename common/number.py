@@ -64,3 +64,13 @@ class number:
 		return self.recurring_number(num)
 	def power(self, n, a):
 		return math.pow(n,a)
+	def simple_factor(self, a, b):
+		s_a = self.get_divisors(a)
+		r_a = a
+		r_b = b
+		for i in s_a:
+			if r_b % i == 0:
+				r_a = r_a / i
+				r_b = r_b / i
+				
+		return {'n':r_a,'d':r_b}
