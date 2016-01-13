@@ -7,9 +7,30 @@ def array_find(arr, item):
 		if i == item:
 			return True
 	return False
+num_type={}
+PRIME=1
+NOTPRIME=2
 class number:
 	def __init__(self):
 		return
+	def is_prime(self, num):
+		'''
+		>>> a = number()
+		>>> a.is_prime(23)
+		True
+		>>> a.is_prime(21)
+		False
+		'''
+		if num == 1:
+			return False
+		if num_type.get(num) != None:
+			return num_type[num] == PRIME
+		for i in range(2, int(num/2) + 1):
+			if num % i == 0:
+				num_type[num] = NOTPRIME
+				return False
+		num_type[num] = PRIME
+		return True
 	def get_divisors(self, num):
 		divisors=[]
 		for i in range(1, int(num/2) + 1):
@@ -74,3 +95,6 @@ class number:
 				r_b = r_b / i
 				
 		return {'n':r_a,'d':r_b}
+if __name__ == "__main__":
+	import doctest
+	doctest.testmod()
