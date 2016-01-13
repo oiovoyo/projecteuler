@@ -95,6 +95,51 @@ class number:
 				r_b = r_b / i
 				
 		return {'n':r_a,'d':r_b}
+	def change_to_base(self, num, base):
+		'''
+		>>> a = number()
+		>>> a.change_to_base(2,2)
+		'10'
+		>>> a.change_to_base(3,2)
+		'11'
+		>>> a.change_to_base(4,2)
+		'100'
+		>>> a.change_to_base(9,9)
+		'10'
+		>>> a.change_to_base(10,9)
+		'11'
+		>>> a.change_to_base(17,9)
+		'18'
+		'''
+		if base >= 10:
+			return str(num)
+		ret = ""
+		while num != 0:
+			mod = str(num % base)
+			ret = mod + ret
+			num = int (num / base)
+		return ret
+	def is_palindromic(self, num, base):
+		'''
+		>>> a = number()
+		>>> a.is_palindromic(3,2)
+		True
+		>>> a.is_palindromic(4,2)
+		True
+		>>> a.is_palindromic(5,2)
+		True
+		'''
+		str_num=str(num)
+		if base != 10:
+			str_num = self.change_to_base(num, base)
+		list_num = list(str_num)
+		#while list_num[len(list_num) - 1] == "0":
+		#	list_num = list_num[0:len(list_num) - 1]
+		list_len = len(list_num) 
+		for i in range(0, int (list_len / 2)):
+			if list_num[i] != list_num[list_len - i - 1]:
+				return False
+		return True
 if __name__ == "__main__":
 	import doctest
 	doctest.testmod()
