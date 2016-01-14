@@ -85,6 +85,8 @@ class number:
 		return self.recurring_number(num)
 	def power(self, n, a):
 		return math.pow(n,a)
+	def sqrt(self, n):
+		return math.sqrt(n)
 	def simple_factor(self, a, b):
 		s_a = self.get_divisors(a)
 		r_a = a
